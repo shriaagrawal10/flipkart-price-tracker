@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flipkart Price Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="hero-bg">
+        <div class="hero-content">
+            <!-- Heading (centered at top) -->
+            <h1 class="hero-heading">Flipkart Price Tracker</h1>
+            <div class="hero-row">
+                <!-- Description LEFT -->
+                <div class="hero-left">
+                    <p class="hero-desc">
+                        Get instant alerts when prices drop on your favorite Flipkart products.<br>
+                        Track any product, set your target price, and get notified as soon as your deal is live!
+                    </p>
+                </div>
+                <!-- Form RIGHT -->
+                <div class="hero-right">
+                    <form class="hero-form" action="/track" method="post">
+                        <input type="text" name="product_url" placeholder="Paste Flipkart Product URL" required>
+                        <input type="number" name="price_limit" placeholder="Target Price (₹)" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <button type="submit">Track Price</button>
+                        <!-- Flask flash messages -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="msg-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section (optional) -->
+    <div class="features">
+        <h2>What can you track?</h2>
+        <div class="features-row">
+            <div class="feature-item">
+                <img src="/static/fashion.jpg" alt="Fashion" />
+                <h4>Fashion</h4>
+            </div>
+            <div class="feature-item">
+                <img src="/static/gadgets.jpg" alt="Gadgets" />
+                <h4>Gadgets</h4>
+            </div>
+            <div class="feature-item">
+                <img src="/static/furniture.jpg" alt="Furniture" />
+                <h4>Furniture</h4>
+            </div>
+        </div>
+        <p class="features-desc">
+            Track prices for fashion, gadgets, furniture, and more — never miss a bargain!
+        </p>
+    </div>
+</body>
+</html>
